@@ -1,19 +1,10 @@
 import streamlit as st
-import nltk
+
 import os
 
-nltk_data_path = "/tmp/nltk_data"
-nltk.data.path.append(nltk_data_path)
-
-nltk.download('punkt', download_dir=nltk_data_path)
-nltk.download('stopwords', download_dir=nltk_data_path)
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import string
-
-nltk.download('punkt', quiet=True)
-
-nltk.download('stopwords', quiet=True)
 
 st.set_page_config(
     page_title="AI FAQ Chatbot",
@@ -70,16 +61,19 @@ faq_aliases = {
 def clean(text):
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
-    TfidfVectorizer(stop_words='english')
-    return ' '.join(tokens)
-faq_aliases = {
-    "What is AI?": ["artificial intelligence", "what is artificial intelligence", "tell me about ai", "explain ai"],
-    "What is Machine Learning?": ["ml", "machine learning basics", "how does ml work"],
-    "What is Deep Learning?": ["dl", "deep learning basics"],
-    "What is NLP?": ["natural language processing", "nlp basics"],
-    "What is Generative AI?": ["generative ai", "chatgpt", "what is chatgpt", "dall-e"],
-    "What is a Large Language Model?": ["llm", "large language model", "gpt", "gpt-4"],
-}
+
+    # simple tokenization (no nltk)
+    tokens = text.split()
+
+    # basic stopwords (no NLTK dependency)
+    stop_words = set([
+        "what", "is", "the", "a", "an", "of", "and", "to", "in"
+    ])
+
+    tokens = [t for t in tokens if t not in stop_words]
+
+    return " ".join(tokens)
+
 questions = list(faq.keys())
 answers   = list(faq.values())
 cleaned_questions = [clean(q) for q in questions]
