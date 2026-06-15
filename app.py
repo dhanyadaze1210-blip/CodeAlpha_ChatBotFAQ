@@ -70,9 +70,7 @@ faq_aliases = {
 def clean(text):
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
-    tokens = word_tokenize(text)
-    stop_words = set(stopwords.words('english'))
-    tokens = [t for t in tokens if t not in stop_words]
+    TfidfVectorizer(stop_words='english')
     return ' '.join(tokens)
 faq_aliases = {
     "What is AI?": ["artificial intelligence", "what is artificial intelligence", "tell me about ai", "explain ai"],
