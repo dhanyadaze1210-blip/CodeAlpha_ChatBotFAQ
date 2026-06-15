@@ -1,0 +1,39 @@
+# Byte-compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Streamlit cache
+.streamlit/
+
+# NLTK data (optional — only if you don’t want to push downloads)
+nltk_data/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Distribution / build
+build/
+dist/
+*.egg-info/
+
+# Python packaging
+pip-wheel-metadata/
