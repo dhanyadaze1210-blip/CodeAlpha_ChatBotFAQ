@@ -1,7 +1,12 @@
 import streamlit as st
 import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+import os
+
+nltk_data_path = "/tmp/nltk_data"
+nltk.data.path.append(nltk_data_path)
+
+nltk.download('punkt', download_dir=nltk_data_path)
+nltk.download('stopwords', download_dir=nltk_data_path)
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import string
